@@ -38,14 +38,6 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-// Does this os/fs support "user-defined" flags
-// via stat->st_flags
-#if defined(__APPLE__) || defined(FreeBSD)
-#define STAT_HAS_FLAGS 1
-#else
-#define STAT_HAS_FLAGS 0
-#endif
-
 void help(void);
 void preconditions(struct stat *source, char *spath, struct stat *dest, char *dpath);
 void clone(struct stat *source, char *dpath);
@@ -98,7 +90,7 @@ void preconditions(struct stat *source, char *spath, struct stat *dest, char *dp
 // Make sure chlone is only called on regular files
 // Not sockets, characeter devices...etc...etc
 void reg_file_check(struct stat *file, char *path) {
-  if (!file->st_mode & S_IFREG) {
+  if (!(file->st_mode & S_IFREG)) {
     fprintf(stderr, "%s is not a regular file. chlone only applies to regular files\n", path);
     exit(EXIT_FAILURE);
   }
@@ -117,9 +109,11 @@ void clone(struct stat *source, char *dpath) {
   err_wrap(chmod(dpath, source->st_mode), "while changing mode" );
   err_wrap(chown(dpath, source->st_uid, source->st_gid), "while changing ownership");
 
-  if (STAT_HAS_FLAGS) {
+  // Does this os/fs support "user-defined" flags
+  // via stat->st_flags
+  #if defined(__APPLE__) || defined(FreeBSD)
     err_wrap(chflags(dpath, source->st_flags), "while changing user-defined flags");
-  }
+  #endif
 }
 
 // Wrap common idiom of return < 0 is error with errno populated 
