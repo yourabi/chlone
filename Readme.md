@@ -10,8 +10,6 @@ Get Chlone
 
 Browse the source on GitHub: <http://github.com/yourabi/chlone>
 
-Clone with Git:
-    $ git clone git://github.com/yourabi/chlone
 
 Installation
 --------
