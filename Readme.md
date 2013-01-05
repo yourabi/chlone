@@ -1,7 +1,9 @@
 Chlone
 ====
 
-Chlone is a simple tool to clone file permissions.
+Chlone is a simple tool to clone file permissions. Similar results can be achieved with a combination of stat (stat -x), chown, chmod, and chflags... However, scripting this functionality introduces another set of cross-platform intricacies (and headaches).
+
+Chlone has been tested, and is supported on: Mac OS X 10.8, FreeBSD, and Ubuntu 12.04.1 LTS. It should work on any POSIX compliant system however cloning of "user-defined" flags is only supported on FreeBSD and Mac OS X at the moment.
 
 Get Chlone
 --------
@@ -16,6 +18,12 @@ Installation
 make
 
 make install (or cp chlone /usr/local/bin)
+
+
+Installation
+--------
+
+chlone *source* *destination*
 
 
 Issues
