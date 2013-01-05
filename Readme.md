@@ -20,7 +20,7 @@ make
 make install (or cp chlone /usr/local/bin)
 
 
-Installation
+Usage
 --------
 
 chlone *source* *destination*
