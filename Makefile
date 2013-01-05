@@ -8,6 +8,3 @@ install: build
 
 clean: 
 	rm chlone
-
-
-
