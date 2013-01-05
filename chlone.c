@@ -46,7 +46,7 @@
 #define STAT_HAS_FLAGS 0
 #endif
 
-void help();
+void help(void);
 void preconditions(struct stat *source, char *spath, struct stat *dest, char *dpath);
 void clone(struct stat *source, char *dpath);
 void reg_file_check(struct stat *source, char *path);
@@ -79,7 +79,7 @@ int main (int argc, char *argv[]) {
 }
 
 // Help/usage... 
-void help() {
+void help(void) {
   printf("\nUsage: chlone <source-path> <destination-path>\n\n");
   exit(EXIT_FAILURE);
 }
